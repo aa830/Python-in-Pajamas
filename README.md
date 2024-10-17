@@ -13,4 +13,9 @@ Clone this repository by either clicking the latest published package, or clonin
 `git clone https://github.com/aa830/Python-in-Pajamas.git`
 
 
-#You should have an extracted folder called Python-in-Pajamas, inside there is a run.sh script. You may use this to launch the program. I will add a run.bat file at a later date.
+You should have an extracted folder called Python-in-Pajamas, inside there is a run.sh script. You may use this to launch the program. I will add a run.bat file at a later date.
+
+# Installing required libraries
+
+Simply cd into the directory and run `pip3 install .`
+This will install the currently required libraries (pyfiglet and rich)
