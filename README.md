@@ -7,7 +7,7 @@ A freeware, open-source program that teaches children the basics of binary, mach
 It uses a minimal amount of 3rd party libraries (hence the requirements.txt) and mostly in-built python libraries to display images and text in a terminal-based GUI.
 
 
-#Usage
+# Usage
 
 Clone this repository by either clicking the latest published package, or cloning from command line using git.
 
