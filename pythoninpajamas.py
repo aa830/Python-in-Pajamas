@@ -1,7 +1,7 @@
 import keyword
 import pyfiglet
 import sys
-import subprocess  # Import subprocess to run the other script
+import subprocess
 import time
 
 # Get user's name and welcome them
@@ -71,16 +71,15 @@ def start_course(course_number):
         print("Please wait...")
         
         # Fake loading bar
-        for i in range(101):  # Simulate a loading process from 0% to 100%
-            time.sleep(0.05)  # Adjust this value for speed of loading
-            # Print the loading bar
+        for i in range(101):
+            time.sleep(0.05)
             sys.stdout.write("\r[" + "=" * (i // 2) + " " * (50 - i // 2) + f"] {i}%")
             sys.stdout.flush()
 
         print("\nLoading complete! Let's get started...\n")
 
-        # Redirect to terminalgui.py for Course 1
-        subprocess.run(["python3", "terminalgui.py"])  # Adjust command if necessary for your environment
+        # Pass the name to terminalgui.py as a command-line argument
+        subprocess.run(["python3", "terminalgui.py", name])
 
-# Call the option1 function to start the script
+# Call the welcome and select function to start the script
 welcomeandselect()
