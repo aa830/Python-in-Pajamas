@@ -37,14 +37,14 @@ def display_ascii_art():
                                        |  01111001 00100001    |
                                        |______________________|
 
-   Display: "Thanks!"
    CPU: "Hello! You seem bright today!"
+   Display: "Thanks!"
     """
     
     # Print the ASCII art
     console.print(art)
 
-def get_ascii_art():
+def ascii_art1():
     """Return the ASCII art as a string."""
     return r"""
          Display Monitor                            CPU
@@ -79,6 +79,8 @@ def get_ascii_art():
                                        |  01111001 00100001    |
                                        |______________________|
 
-   Display: "Thanks!"
    CPU: "Hello! You seem bright today!"
+   Display: "Thanks!"
     """
+#second ascii
+

@@ -67,53 +67,26 @@ def start_course(course_number):
     if course_number == 1:
         print("Course 1: Introduction to Machine Language and Binary")
         print("Objective: Learn the basics of machine language and binary.")
-        
-        # Replace the learning objectives with a loading message
-        print("Please wait...")
-        
-        # Fake loading bar (aesthetic appeal)
-        for i in range(101):
-            time.sleep(0.05)
-            sys.stdout.write("\r[" + "=" * (i // 2) + " " * (50 - i // 2) + f"] {i}%")
-            sys.stdout.flush()
-    if course_number == 2:
+    elif course_number == 2:
         print("Course 2: Understanding the Python Programming Language")
-        print("Objective: Learn the basics of Python programming.")
+        print("Objective: Learn how Python translates to binary.")
+    elif course_number == 3:
+        print("Course 3: Binary Interaction with Memory")
+        print("Objective: Learn how binary manages memory in computers.")
 
-        # Replace the learning objectives with a loading message
-        print("Please wait...")
+    # Replace the learning objectives with a loading message
+    print("Please wait...")
+    
+    # Fake loading bar (aesthetic appeal)
+    for i in range(101):
+        time.sleep(0.05)
+        sys.stdout.write("\r[" + "=" * (i // 2) + " " * (50 - i // 2) + f"] {i}%")
+        sys.stdout.flush()
 
-        # Fake loading bar (aesthetic appeal)
-        for i in range(101):
-            time.sleep(0.05)
-            sys.stdout.write("\r[" + "=" * (i // 2) + " " * (50 - i // 2) + f"] {i}%")
-            sys.stdout.flush()
+    print("\nLoading complete! Let's get started...\n")
 
-    if course_number == 3:
-        print("Course 3: Writing Python Programs")
-        print("Objective: Learn how to write Python programs.")
-
-        # Replace the learning objectives with a loading message
-        print("Please wait...")
-
-        # Fake loading bar (aesthetic appeal)
-        for i in range(101):
-            time.sleep(0.05)
-            sys.stdout.write("\r[" + "=" * (i // 2) + " " * (50 - i // 2) + f"] {i}%")
-            sys.stdout.flush()
-
-    elif course_number == 4:
-        print("Exiting Python in Pajamas...")
-        time.sleep(2)
-        exitTitle = pyfiglet.figlet_format("Goodbye!", font="doh", width=250)
-        time.sleep(2)
-        sys.exit()        
-
-        print("\nLoading complete! Let's get started...\n")
-
-        # Pass the name and course number to terminalgui.py as command-line arguments
-        subprocess.run([sys.executable, "terminalgui.py", name, str(course_number)])
-
+    # Pass the name and course number to terminalgui.py as command-line arguments
+    subprocess.run([sys.executable, "terminalgui.py", name, str(course_number)])
 
 # Call the welcome and select function to start the script
 welcomeandselect()
