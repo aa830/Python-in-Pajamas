@@ -4,7 +4,7 @@ import sys
 import subprocess
 import time
 
-# Get user's name and welcome them
+# Get user's name and welcome them, also display a nice title screen using pyfiglet lib
 displayProgramTitle = pyfiglet.figlet_format("Python in Pajamas", font="doh", width=200)
 print(displayProgramTitle)
 name = input("Hello user! Welcome to Python in Pajamas, please enter your name: ")
@@ -28,7 +28,7 @@ def welcomeandselect():
     # Convert user input to lowercase for case-insensitive comparison
     user_input_lower = userKnowledge.lower()
     
-    # Iterate over each keyword in kwlist
+    # Iterate over each keyword in kwlist (detect if any keywords were in user's input)
     found_keyword = False
     for kw in kwlist:
         if kw.lower() in user_input_lower:
@@ -54,6 +54,7 @@ def welcomeandselect():
         else:
             exitTitle = pyfiglet.figlet_format("Goodbye!", font="doh", width=250)
             print(exitTitle) 
+            time.sleep(2)
             sys.exit()
     else:
         print("Invalid input. Starting Course 1 by default...")
@@ -70,16 +71,49 @@ def start_course(course_number):
         # Replace the learning objectives with a loading message
         print("Please wait...")
         
-        # Fake loading bar
+        # Fake loading bar (aesthetic appeal)
+        for i in range(101):
+            time.sleep(0.05)
+            sys.stdout.write("\r[" + "=" * (i // 2) + " " * (50 - i // 2) + f"] {i}%")
+            sys.stdout.flush()
+    if course_number == 2:
+        print("Course 2: Understanding the Python Programming Language")
+        print("Objective: Learn the basics of Python programming.")
+
+        # Replace the learning objectives with a loading message
+        print("Please wait...")
+
+        # Fake loading bar (aesthetic appeal)
         for i in range(101):
             time.sleep(0.05)
             sys.stdout.write("\r[" + "=" * (i // 2) + " " * (50 - i // 2) + f"] {i}%")
             sys.stdout.flush()
 
+    if course_number == 3:
+        print("Course 3: Writing Python Programs")
+        print("Objective: Learn how to write Python programs.")
+
+        # Replace the learning objectives with a loading message
+        print("Please wait...")
+
+        # Fake loading bar (aesthetic appeal)
+        for i in range(101):
+            time.sleep(0.05)
+            sys.stdout.write("\r[" + "=" * (i // 2) + " " * (50 - i // 2) + f"] {i}%")
+            sys.stdout.flush()
+
+    elif course_number == 4:
+        print("Exiting Python in Pajamas...")
+        time.sleep(2)
+        exitTitle = pyfiglet.figlet_format("Goodbye!", font="doh", width=250)
+        time.sleep(2)
+        sys.exit()        
+
         print("\nLoading complete! Let's get started...\n")
 
-        # Pass the name to terminalgui.py as a command-line argument
-        subprocess.run(["python3", "terminalgui.py", name])
+        # Pass the name and course number to terminalgui.py as command-line arguments
+        subprocess.run([sys.executable, "terminalgui.py", name, str(course_number)])
+
 
 # Call the welcome and select function to start the script
 welcomeandselect()
