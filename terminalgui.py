@@ -7,34 +7,52 @@ name = sys.argv[1] if len(sys.argv) > 1 else "User"
 initial_course_number = int(sys.argv[2]) if len(sys.argv) > 2 else 1
 
 def show_toc(stdscr):
-    """Display the Table of Contents and allow the user to choose a course."""
+    """Display the Table of Contents and allow the user to choose a course using arrow keys."""
     stdscr.clear()
-    toc_text = (
-        f"Welcome, {name}!\n\n"
-        "Select a course by pressing the corresponding number:\n\n"
-        "1. Introduction to Python in Pajamas\n"
-        "2. Understanding Python Programming\n"
-        "3. Binary and Memory Management\n\n"
-        "Press 'q' again to quit."
-    )
+    toc_options = [
+        "Introduction to Python in Pajamas",
+        "Understanding Python Programming",
+        "Binary and Memory Management"
+    ]
     
+    toc_text = f"Welcome, {name}!\n\nUse the arrow keys to select a course and press Enter:\n"
     lines = toc_text.splitlines()
     max_y, max_x = stdscr.getmaxyx()
 
-    # Display TOC text
-    for i, line in enumerate(lines):
-        if len(line) > max_x - 2:
-            line = line[:max_x - 2]
-        if i < max_y - 1:
-            stdscr.addstr(i + 1, 1, line)
-    
-    stdscr.box()
-    stdscr.refresh()
+    # Current highlighted option index
+    selected_option = 0
 
     while True:
+        stdscr.clear()
+
+        # Display the welcome message and TOC options
+        for i, line in enumerate(lines):
+            if len(line) > max_x - 2:
+                line = line[:max_x - 2]
+            if i < max_y - 1:
+                stdscr.addstr(i + 1, 1, line)
+
+        # Display TOC options with highlighting
+        for idx, option in enumerate(toc_options):
+            if idx == selected_option:
+                stdscr.addstr(len(lines) + 2 + idx, 2, f"> {option}", curses.A_REVERSE)
+            else:
+                stdscr.addstr(len(lines) + 2 + idx, 2, f"  {option}")
+
+        # Instruction for quitting
+        stdscr.addstr(max_y - 1, 1, "Press 'q' to quit.")
+        stdscr.refresh()
+
+        # Get user input
         key = stdscr.getch()
-        if key in (ord('1'), ord('2'), ord('3')):
-            return int(chr(key))  # Return the selected course number
+
+        # Navigate the menu
+        if key == curses.KEY_UP and selected_option > 0:
+            selected_option -= 1
+        elif key == curses.KEY_DOWN and selected_option < len(toc_options) - 1:
+            selected_option += 1
+        elif key == ord('\n'):  # Enter key
+            return selected_option + 1  # Return the selected course number (1-based index)
         elif key == ord('q'):
             return 'quit'
 
