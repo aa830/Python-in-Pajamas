@@ -10,6 +10,7 @@ print(displayProgramTitle)
 name = input("Hello user! Welcome to Python in Pajamas, please enter your name: ")
 
 def welcomeandselect():
+    """Welcomes the user, checks their knowledge, and allows course selection."""
     print(f"Hello {name}, welcome to the wonderful world of Python, but let's quickly check how much you know!")
     userKnowledge = input("Tell me, what do you know about machine language or binary?: ")
 
@@ -28,13 +29,9 @@ def welcomeandselect():
     # Convert user input to lowercase for case-insensitive comparison
     user_input_lower = userKnowledge.lower()
     
-    # Iterate over each keyword in kwlist (detect if any keywords were in user's input)
-    found_keyword = False
-    for kw in kwlist:
-        if kw.lower() in user_input_lower:
-            found_keyword = True
-            break
-    
+    # Check if any keywords were in user's input
+    found_keyword = any(kw in user_input_lower for kw in kwlist)
+
     # Course selection logic
     if found_keyword:
         print("Great! You've already learned about it. Let's learn a little more, shall we?")
@@ -55,12 +52,14 @@ def welcomeandselect():
             exitTitle = pyfiglet.figlet_format("Goodbye!", font="doh", width=250)
             print(exitTitle) 
             time.sleep(2)
+            print("Thank you for visiting! Have a great day!")
             sys.exit()
     else:
         print("Invalid input. Starting Course 1 by default...")
         start_course(1)
 
 def start_course(course_number):
+    """Starts the selected course and displays its objectives."""
     if course_number > 0 and course_number != 4:
         print(f"Welcome to Course {course_number}!")
 
@@ -75,7 +74,7 @@ def start_course(course_number):
         print("Objective: Learn how binary manages memory in computers.")
 
     # Replace the learning objectives with a loading message
-    print("Please wait...")
+    print("Please wait while we load the course materials...")
     
     # Fake loading bar (aesthetic appeal)
     for i in range(101):
@@ -85,6 +84,8 @@ def start_course(course_number):
 
     print("\nLoading complete! Let's get started...\n")
 
+    # Debugging print statement before running terminalgui.py
+    print(f"Running: {sys.executable} terminalgui.py {name} {course_number}")
     # Pass the name and course number to terminalgui.py as command-line arguments
     subprocess.run([sys.executable, "terminalgui.py", name, str(course_number)])
 
