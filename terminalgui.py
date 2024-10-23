@@ -6,6 +6,8 @@ from asciirenderer import ascii_art1, ascii_art2
 name = sys.argv[1] if len(sys.argv) > 1 else "User"
 initial_course_number = int(sys.argv[2]) if len(sys.argv) > 2 else 1
 
+
+#Table of contents menu for user to choose next course
 def show_toc(stdscr):
     """Display the Table of Contents and allow the user to choose a course using arrow keys."""
     stdscr.clear()
@@ -85,7 +87,7 @@ def main1(stdscr, course_number):
                 "Now you know what happens when you type into YouTube!\nEverything I have mentioned here is called machine language. Now you know!\n"
             ),
             (
-                "Page 3:\n\nThis is the End of Course 1. Press the right arrow to continue to the next section!"
+                "Page 3:\n\nThis is the End of Course 1. Press ""q"" to select the next course."
             )
         ],
         2: [
@@ -100,7 +102,7 @@ def main1(stdscr, course_number):
                 '    print("Python is easy!")\n'
             ),
             (
-                f"Page 2:\n\nContinuing with Course 2...\nPython is known as a high-level language because it allows you to write instructions using human-friendly syntax.\n"
+                f"Page 2:\n\nContinuing with Course 2...\nPython is known as a ""high-level"" language because it allows you to write instructions using words that you can understand:.\n"
                 "You can think of high-level programming languages like a ladder: When you run a Python script, it goes down the 'ladder' to the CPU, which translates it into its own language.\n"
                 "After translating, the CPU sends out its order!\n\n"
                 "For the code above, the CPU will command the screen to print 'Python is easy!'\n"
@@ -108,7 +110,7 @@ def main1(stdscr, course_number):
                 f"{a2}\n"
             ),
             (
-                "Page 3:\n\nEnd of Course 2, Chapter 1. Press the right arrow to continue."
+                "Page 3:\n\nEnd of Course 2, Chapter 1. Press ""q"" to select the next course."
             )
         ],
         3: [
@@ -121,7 +123,7 @@ def main1(stdscr, course_number):
                 "Understanding how data is stored in bits...\n"
             ),
             (
-                "Page 3:\n\nEnd of Course 3, Chapter 1. Press the right arrow to continue."
+                "Page 3:\n\nEnd of Course 3, Chapter 1. Press ""q"" to select the next course."
             )
         ]
     }
