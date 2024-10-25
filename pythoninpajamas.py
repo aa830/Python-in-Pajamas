@@ -6,7 +6,7 @@ import time
 import Levenshtein
 
 # Get user's name and welcome them, also display a nice title screen using pyfiglet lib
-displayProgramTitle = pyfiglet.figlet_format("Python in Pajamas", font="doh", width=200)
+displayProgramTitle = pyfiglet.figlet_format("Python in Pajamas", font="banner3-D", width=200)
 print(displayProgramTitle)
 name = input("Hello user! Welcome to Python in Pajamas, please enter your name: ")
 
@@ -14,6 +14,11 @@ def welcomeandselect():
     """Welcomes the user, checks their knowledge, and allows course selection."""
     print(f"Hello {name}, welcome to the wonderful world of Python, but let's quickly check how much you know!")
     userKnowledge = input("Tell me, what do you know about machine language or binary?: ")
+    while userKnowledge == "":
+        print("Please enter an input")
+        userKnowledge = input("Tell me, what do you know about machine language or binary")
+
+        
 
     # List of keywords related to machine language and binary
     kwlist = [
@@ -27,9 +32,11 @@ def welcomeandselect():
         'command', 'direct instruction for a task'
     ]
 
+
+
+   
     # Convert user input to lowercase for case-insensitive comparison
     user_input_lower = userKnowledge.lower()
-
     # Check for exact keyword matches
     found_keyword = any(kw in user_input_lower for kw in kwlist)
 

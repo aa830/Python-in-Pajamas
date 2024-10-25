@@ -154,7 +154,7 @@ def main1(stdscr, course_number):
                 stdscr.addstr(i, 1, line)
 
         stdscr.box()
-        stdscr.addstr(max_y - 1, 1, "Use arrow keys or 'n'/'p' to navigate, 'q' to go back.")
+        stdscr.addstr(max_y - 1, 1, "Use arrow keys (<-- or -->) or 'n'/'p' to navigate, 'q' to go back.")
 
         stdscr.refresh()
         key = stdscr.getch()
@@ -180,3 +180,4 @@ def main(stdscr):
 
 if __name__ == "__main__":
     curses.wrapper(main)
+
