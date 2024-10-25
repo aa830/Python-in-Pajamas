@@ -30,11 +30,27 @@ def welcomeandselect():
     # Convert user input to lowercase for case-insensitive comparison
     user_input_lower = userKnowledge.lower()
 
-    # Define a threshold distance for considering a match
-    threshold_distance = 3
+    # Check for exact keyword matches
+    found_keyword = any(kw in user_input_lower for kw in kwlist)
 
-    # Check if any keywords match with a distance below the threshold
-    found_keyword = any(Levenshtein.distance(user_input_lower, kw.lower()) <= threshold_distance for kw in kwlist)
+    # If no exact keyword match is found, use Levenshtein to suggest corrections
+    if not found_keyword:
+        # Define a threshold distance for considering a match
+        threshold_distance = 3
+
+        # Find the closest keyword based on Levenshtein distance
+        closest_match = None
+        closest_distance = threshold_distance + 1  # Start with a distance greater than the threshold
+
+        for kw in kwlist:
+            distance = Levenshtein.distance(user_input_lower, kw.lower())
+            if distance < closest_distance:
+                closest_match = kw
+                closest_distance = distance
+
+        if closest_match and closest_distance <= threshold_distance:
+            print(f"It looks like you meant '{closest_match}' based on your input. We'll proceed with that!")
+            found_keyword = True  # Treat this as a match for course selection.
 
     # Course selection logic
     if found_keyword:

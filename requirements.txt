@@ -1,2 +1,4 @@
 pyfiglet==1.0.2
-rich==13.9.2
+python_Levenshtein==0.26.0
+python_Levenshtein==0.26.0
+rich==13.9.3
