@@ -3,6 +3,7 @@ import pyfiglet
 import sys
 import subprocess
 import time
+import Levenshtein
 
 # Get user's name and welcome them, also display a nice title screen using pyfiglet lib
 displayProgramTitle = pyfiglet.figlet_format("Python in Pajamas", font="doh", width=200)
@@ -16,21 +17,24 @@ def welcomeandselect():
 
     # List of keywords related to machine language and binary
     kwlist = [
-        'computer', 'computers', '1s and 0s', '0s and 1s', '0', '1', 'language', 
+        'computer', 'computers', '1s and 0s', '0s and 1s', '0 and 1', 'language', 
         'understand', 'binary', '01', 'bit', '0 or 1', 'byte', '8 bits', 'code', 
         'instructions for the CPU', 'cpu', 'Central Processing Unit', 'instruction', 
         'command for the CPU', 'memory', 'storage for data', 'number', 
-        'a value made of bits', 'zero', 'off state', 'one', 'on state', 
-        'on_off', 'binary logic state', 'logic', 'rules governing operations', 
-        'data', 'information processed by the CPU', 'program', 'sequence of instructions', 
+        'a value made of bits', 'zero', 'off state', 'one', 'on state',
+        'on_off', 'binary logic state', 'logic', 'rules governing operations',
+        'data', 'information processed by the CPU', 'program', 'sequence of instructions',
         'command', 'direct instruction for a task'
     ]
-    
+
     # Convert user input to lowercase for case-insensitive comparison
     user_input_lower = userKnowledge.lower()
-    
-    # Check if any keywords were in user's input
-    found_keyword = any(kw in user_input_lower for kw in kwlist)
+
+    # Define a threshold distance for considering a match
+    threshold_distance = 3
+
+    # Check if any keywords match with a distance below the threshold
+    found_keyword = any(Levenshtein.distance(user_input_lower, kw.lower()) <= threshold_distance for kw in kwlist)
 
     # Course selection logic
     if found_keyword:
@@ -50,7 +54,7 @@ def welcomeandselect():
             start_course(int(course_choice))
         else:
             exitTitle = pyfiglet.figlet_format("Goodbye!", font="doh", width=250)
-            print(exitTitle) 
+            print(exitTitle)
             time.sleep(2)
             print("Thank you for visiting! Have a great day!")
             sys.exit()
@@ -75,7 +79,7 @@ def start_course(course_number):
 
     # Replace the learning objectives with a loading message
     print("Please wait while we load the course materials...")
-    
+
     # Fake loading bar (aesthetic appeal)
     for i in range(101):
         time.sleep(0.05)
