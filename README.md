@@ -25,4 +25,4 @@ You should have an extracted folder called Python-in-Pajamas, inside there is a 
 # Installing required libraries
 
 Simply cd into the directory and run `pip3 install -r requirements.txt`
-This will install the currently required libraries (pyfiglet and rich)
+This will install the currently required libraries (pyfiglet, rich and Levenshtein)
