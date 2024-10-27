@@ -1,4 +1,4 @@
-import keyword
+#import required libraries
 import pyfiglet
 import sys
 import subprocess
