@@ -64,7 +64,7 @@ def main1(stdscr, course_number):
     a1 = ascii_art1()
     a2 = ascii_art2()
 
-    # Define content for each course
+    # Define content for each course using a character string 
     courses_content = {
         1: [
             (
@@ -106,7 +106,7 @@ def main1(stdscr, course_number):
                 "You can think of high-level programming languages like a ladder: When you run a Python script, it goes down the 'ladder' to the CPU, which translates it into its own language.\n"
                 "After translating, the CPU sends out its order!\n\n"
                 "For the code above, the CPU will command the screen to print 'Python is easy!'\n"
-                "Machine language is a 'low-level' language because the CPU doesn't need to use that much brain power to understand what the code wants to do!\n\n"
+                "Machine language is a 'low-level' language because the CPU doesn't need to use that much brain power to understand what the code wants to do, whereas the CPU needs to really think to understand what Python wants!\n\n"
                 f"{a2}\n"
             ),
             (
