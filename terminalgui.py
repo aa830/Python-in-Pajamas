@@ -99,18 +99,18 @@ def main1(stdscr, course_number):
                 "For now, let's stick to Python.\nWhere were we... ah! How does it work?\n"
                 "When you code in Python, it converts the binary form into something that coders like you can understand.\n"
                 "For example, rather than having to type a long line of 1s and 0s to print something (oh, what a headache!), in Python you can simply type:\n\n"
-                '    print("Python is easy!")\n'
+                '    print("Python is easy!")\nThis way, you can easily understand what you are trying to do with Python, rather than just typing a long line of 1s and 0s.\n'
             ),
             (
                 f"Page 2:\n\nContinuing with Course 2...\nPython is known as a ""high-level"" language because it allows you to write instructions using words that you can understand:.\n"
                 "You can think of high-level programming languages like a ladder: When you run a Python script, it goes down the 'ladder' to the CPU, which translates it into its own language.\n"
                 "After translating, the CPU sends out its order!\n\n"
-                "For the code above, the CPU will command the screen to print 'Python is easy!'\n"
+                "For the code on the previous page, the CPU will command the screen to print 'Python is easy!'\n"
                 "Machine language is a 'low-level' language because the CPU doesn't need to use that much brain power to understand what the code wants to do, whereas the CPU needs to really think to understand what Python wants!\n\n"
                 f"{a2}\n"
             ),
             (
-                "Page 3:\n\nEnd of Course 2, Chapter 1. Press ""q"" to select the next course."
+                "Page 3:\n\nBut what about doing math?\n\nCan python do math?\n\nYes! it can do math very easily!\n In Python we have a bunch of symbols called operators. These operators are kinda like the symbols you use to plus or minus, but there are very special ones too!\n\n\n For example: \n\n\n 1x3 would be 1*3 in Python. Notice the ""*"" used for multiplication.\n\n\n 1 ÷ 3 would be 1/3. Simple! Plus and minus are the same, dont worry :)\n\n\n Lets create a short python program that adds two numbers:\n\nFirst, we want the user to enter a number, so we use ""input()"", but what do we ask them to input. That is where you put the stuff in brackets! Using quotation marks (""), you could put:\n input(""Hello! Please enter a number!:""). Now when the user runs the code, it will ask them to input a number\nHere is the issue, now that we have an input, how do we make sure the CPU remembers it?\n\nThat's where constants come in!\n Constants are used to give something a value that will never change. For example, the user's number will never change! So you could write:\n\n\n number = input(""Hello! Please enter a number!:"").\nGreat! Now lets say that we want to add the user's number to 1.  Then we can write using another constant:\n\n new_number= 1 + number\nprint(""f""Your new number is: ""{{new_number}}"")\n\nThe ""f"" is used to print the new_number constant in the middle of the sentence, rather than having to rewrite the equation."
             )
         ],
         3: [
