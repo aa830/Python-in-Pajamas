@@ -106,7 +106,7 @@ def main1(stdscr, course_number):
                 "You can think of high-level programming languages like a ladder: When you run a Python script, it goes down the 'ladder' to the CPU, which translates it into its own language.\n"
                 "After translating, the CPU sends out its order!\n\n"
                 "For the code above, the CPU will command the screen to print 'Python is easy!'\n"
-                "Machine language is a 'low-level' language because the CPU doesn't need to use that high of its power level to understand what the code wants to do!\n\n"
+                "Machine language is a 'low-level' language because the CPU doesn't need to use that much brain power to understand what the code wants to do!\n\n"
                 f"{a2}\n"
             ),
             (
