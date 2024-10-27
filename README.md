@@ -26,3 +26,7 @@ You should have an extracted folder called Python-in-Pajamas, inside there is a 
 
 Simply cd into the directory and run `pip3 install -r requirements.txt`
 This will install the currently required libraries (pyfiglet, rich and Levenshtein)
+
+# Note for MacOS users
+
+Please run the following command to make the shell script executable `chmod +x run.sh` (assuming you are already inside the folder)
