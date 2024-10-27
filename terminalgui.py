@@ -84,7 +84,7 @@ def main1(stdscr, course_number):
                 "To make it simple, let's say that you pressed 'a'. Think about it like the brain, when you touch something hot, your hand will quickly move back, right? It is essentially the same thing!\n"
                 "When you press the 'a' key, Mr. A Key quickly sends a message using Binary to the CPU (aka the Brain), and the CPU decides what to do. In this case, the CPU decides to display the letter 'a' on the screen.\n"
                 "The CPU sends a Binary message to Mr. Screen to display 'a'.\n\n"
-                "Now you know what happens when you type into YouTube!\nEverything I have mentioned here is called machine language. Now you know!\n"
+                "Now you know what happens when you type into YouTube!\nEverything I have mentioned here is called, ""machine language"". Now you know!\n"
             ),
             (
                 "Page 3:\n\nThis is the End of Course 1. Press ""q"" to select the next course."
