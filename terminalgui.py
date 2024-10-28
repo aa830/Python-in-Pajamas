@@ -9,7 +9,7 @@ initial_course_number = int(sys.argv[2]) if len(sys.argv) > 2 else 1
 
 # Table of contents menu for user to choose next course
 def show_toc(stdscr):
-    """Display the Table of Contents and allow the user to choose a course using arrow keys."""
+    #Display the Table of Contents and allow the user to choose a course using arrow keys.
     stdscr.clear()
     toc_options = [
         "Introduction to Python in Pajamas",
@@ -60,7 +60,7 @@ def show_toc(stdscr):
 
 # Main function to display course content
 def main1(stdscr, course_number):
-    """Main function to display course content."""
+    #Main function to display course content.
     stdscr.clear()
     a1 = ascii_art1()
     a2 = ascii_art2()
@@ -199,7 +199,7 @@ def main1(stdscr, course_number):
 
 # Main application loop
 def main(stdscr):
-    """Main application loop to display TOC and allow navigation between courses."""
+    #Main application loop to display TOC and allow navigation between courses.
     curses.curs_set(0)
     course_number = initial_course_number
 

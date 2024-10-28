@@ -11,9 +11,10 @@ print(displayProgramTitle)
 name = input("Hello user! Welcome to Python in Pajamas, please enter your name: ")
 
 def welcomeandselect():
-    """Welcomes the user, checks their knowledge, and allows course selection."""
+    #Welcomes the user, checks their knowledge, and allows course selection.
     print(f"Hello {name}, welcome to the wonderful world of Python, but let's quickly check how much you know!")
     userKnowledge = input("Tell me, what do you know about machine language or binary?: ")
+   #what if the user cheats and doesnt input anything?? Just ask them to enter something!
     while userKnowledge == "":
         print("Please enter an input!")
         userKnowledge = input("Tell me, what do you know about machine language or binary")
@@ -86,7 +87,7 @@ def welcomeandselect():
         start_course(1)
 
 def start_course(course_number):
-    """Starts the selected course and displays its objectives."""
+    #Starts the selected course and displays its objectives
     if course_number > 0 and course_number != 4:
         print(f"Welcome to Course {course_number}!")
 
@@ -116,5 +117,5 @@ def start_course(course_number):
     # Pass the name and course number to terminalgui.py as command-line arguments
     subprocess.run([sys.executable, "terminalgui.py", name, str(course_number)])
 
-# Call the welcome and select function to start the script
+# Call the welcome and select function to start the script. Enjoy!
 welcomeandselect()
