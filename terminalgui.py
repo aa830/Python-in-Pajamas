@@ -137,7 +137,7 @@ def main1(stdscr, course_number):
         3: [
             (
                 f"Page 1:\n\nWelcome to Course 3, {name}!\n"
-                "In this course, we'll explore how you can start programming!\n\nFirst, we need to download Python.\n\n"
+                "In this course, we'll explore how you can start programming!\n\nFirst, we need to download Python.\n\n You can press ""o"" to open the python website in your browser.\n\n\n After downloading, just double click the file!\n\n\nIf there is an option called ""add to PATH"", make sure to select it. Then all you need to do is click install and en viola! You have python!\n\n\nBut.... how do you write the code and test if it works?\n\nYou should download Thonny! you can go to their website (https://thonny.org/) or if you are really smart, use the terminal and type:\n\npip3 install thonny.\n\n\nThonny is like Google docs, but for python programming. Not only can you write code, when it find an error it tries to help you fix it!\n\nYou can also run your code with the push of a button.\nAmazing isn't it?"
                 "All you need to do is go to python.org and download the latest version.\n\n"
                 "Press 'o' to open the website, or any other key to continue.\n\n"
             ),
