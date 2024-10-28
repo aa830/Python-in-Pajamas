@@ -1,6 +1,7 @@
 import curses
 import sys
 from asciirenderer import ascii_art1, ascii_art2
+import webbrowser
 
 # Get the name and course number passed as command-line arguments
 name = sys.argv[1] if len(sys.argv) > 1 else "User"
@@ -136,8 +137,9 @@ def main1(stdscr, course_number):
         3: [
             (
                 f"Page 1:\n\nWelcome to Course 3, {name}!\n"
-                "In this course, we'll explore how binary interacts with memory...\n\n"
-                "Every time you perform an action on a computer, data is stored and retrieved from memory.\n\n"
+                "In this course, we'll explore how you can start programming!\n\nFirst, we need to download Python.\n\n"
+                "All you need to do is go to python.org and download the latest version.\n\n"
+                "Press 'o' to open the website, or any other key to continue.\n\n"
             ),
             (
                 "Page 2:\n\nLet's dive deeper into memory management and how data is stored in bits...\n\n"
@@ -176,6 +178,15 @@ def main1(stdscr, course_number):
         stdscr.box()
         stdscr.addstr(max_y - 1, 1, "Use arrow keys (<-- or -->) or 'n'/'p' to navigate, 'q' to go back.")
 
+        # Detect if we're on Course 3, Page 1 and prompt the user to open the website
+        if course_number == 3 and current_page == 0:
+            stdscr.addstr(max_y - 2, 1, "Press 'o' to open python.org in your browser.")
+            key = stdscr.getch()
+
+            if key == ord('o'):
+                # Open the python.org website
+                webbrowser.open('https://www.python.org')
+
         stdscr.refresh()
         key = stdscr.getch()
 
@@ -186,17 +197,19 @@ def main1(stdscr, course_number):
         elif key == ord('q'):
             return 'toc'
 
+# Main application loop
 def main(stdscr):
-    """Main entry point of the program."""
+    """Main application loop to display TOC and allow navigation between courses."""
+    curses.curs_set(0)
     course_number = initial_course_number
-    while True:
-        result = main1(stdscr, course_number) if course_number else show_toc(stdscr)
-        if result == 'quit':
-            break
-        elif result == 'toc':
-            course_number = None
-        else:
-            course_number = result
 
-if __name__ == "__main__":
+    while True:
+        if course_number == 'quit':
+            break
+        elif course_number == 'toc':
+            course_number = show_toc(stdscr)
+        else:
+            course_number = main1(stdscr, course_number)
+
+if __name__ == '__main__':
     curses.wrapper(main)
