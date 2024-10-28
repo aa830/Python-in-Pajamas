@@ -111,7 +111,7 @@ def start_course(course_number):
 
     print("\nLoading complete! Let's get started...\n")
 
-    # Debugging print statement before running terminalgui.py
+    # Debugging print statement before running terminalgui.py in case something doesnt work
     print(f"Running: {sys.executable} terminalgui.py {name} {course_number}")
     # Pass the name and course number to terminalgui.py as command-line arguments
     subprocess.run([sys.executable, "terminalgui.py", name, str(course_number)])
