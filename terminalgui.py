@@ -17,7 +17,7 @@ def show_toc(stdscr):
     toc_options = [
         "Introduction to Python in Pajamas",
         "Understanding Python Programming",
-        "Binary and Memory Management"
+        "Setting up Python"
     ]
     
     toc_text = f"Welcome, {name}!\n\nUse the arrow keys to select a course and press Enter:\n"
@@ -157,10 +157,10 @@ def main1(stdscr, course_number):
             ),
             (
                 "Page 2:\n\nIf you did all this correctly, you can officially enter the programming world! "
-                "Congrats!\n\n(P.S. your Thonny should look something like this)\n\n"
+                "Congrats!\n\n(P.S. your Thonny should look something like this). Press the right arrow to see the image!\n\n"
             ),
             (
-                "Page 3:\n\nEnd of Course 3. Press 'q' to select the next course."
+                "Page 3:\n\nEnd of Course 3. Press 'q' to select the next course. Thank you for using my protoype!"
             )
         ]
     }
