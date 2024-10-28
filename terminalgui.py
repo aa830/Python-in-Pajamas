@@ -2,6 +2,9 @@ import curses
 import sys
 from asciirenderer import ascii_art1, ascii_art2
 import webbrowser
+from PIL import Image
+
+# ----------------------------------------------------------------DEFINING VARIABLES---------------------------------------------------------------- #
 
 # Get the name and course number passed as command-line arguments
 name = sys.argv[1] if len(sys.argv) > 1 else "User"
@@ -9,7 +12,7 @@ initial_course_number = int(sys.argv[2]) if len(sys.argv) > 2 else 1
 
 # Table of contents menu for user to choose next course
 def show_toc(stdscr):
-    #Display the Table of Contents and allow the user to choose a course using arrow keys.
+    # Display the Table of Contents and allow the user to choose a course using arrow keys.
     stdscr.clear()
     toc_options = [
         "Introduction to Python in Pajamas",
@@ -58,12 +61,15 @@ def show_toc(stdscr):
         elif key == ord('q'):
             return 'quit'
 
-# Main function to display course content
+# Main function to display course images
 def main1(stdscr, course_number):
-    #Main function to display course content.
+    # Main function to display course content.
     stdscr.clear()
     a1 = ascii_art1()
     a2 = ascii_art2()
+    a3 = Image.open('Screenshot 2024-10-28 at 4.10.11 PM.png')
+
+    # ----------------------------------------------------------------INIT VARIABLES AND WRITE COURSE CONTENTS---------------------------------------------------------------- #
 
     # Define content for each course using a character string
     courses_content = {
@@ -137,12 +143,21 @@ def main1(stdscr, course_number):
         3: [
             (
                 f"Page 1:\n\nWelcome to Course 3, {name}!\n"
-                "In this course, we'll explore how you can start programming!\n\nFirst, we need to download Python.\n\n You can press ""o"" to open the python website in your browser.\n\n\n After downloading, just double click the file!\n\n\nIf there is an option called ""add to PATH"", make sure to select it. Then all you need to do is click install and en viola! You have python!\n\n\nBut.... how do you write the code and test if it works?\n\nYou should download Thonny! you can go to their website (https://thonny.org/) or if you are really smart, use the terminal and type:\n\npip3 install thonny.\n\n\nThonny is like Google docs, but for python programming. Not only can you write code, when it find an error it tries to help you fix it!\n\nYou can also run your code with the push of a button.\nAmazing isn't it?"
-                "All you need to do is go to python.org and download the latest version.\n\n"
-                "Press 'o' to open the website, or any other key to continue.\n\n"
+                "In this course, we'll explore how you can start programming!\n\n"
+                "First, we need to download Python. You can press 'o' to open the Python website in your browser.\n\n"
+                "After downloading, just double-click the file!\n\n"
+                "If there is an option called 'add to PATH', make sure to select it. "
+                "Then all you need to do is click install, and voila! You have Python!\n\n"
+                "But... how do you write the code and test if it works?\n\n"
+                "You should download Thonny! You can go to their website (https://thonny.org/) or use the terminal and type:\n\n"
+                "    pip3 install thonny\n\n"
+                "Thonny is like Google Docs, but for Python programming. "
+                "Not only can you write code, it tries to help you fix errors!\n\n"
+                "You can also run your code with the push of a button. Amazing, isn't it?"
             ),
             (
-                "Page 2:\n\nLet's dive deeper into memory management and how data is stored in bits...\n\n"
+                "Page 2:\n\nIf you did all this correctly, you can officially enter the programming world! "
+                "Congrats!\n\n(P.S. your Thonny should look something like this)\n\n"
             ),
             (
                 "Page 3:\n\nEnd of Course 3. Press 'q' to select the next course."
@@ -156,6 +171,8 @@ def main1(stdscr, course_number):
     # Initialize variables
     current_page = 0
     key = 0
+
+    # ----------------------------------------------------------------DEFINING KEYBINDS---------------------------------------------------------------- #
 
     # Main loop
     while key != ord('q'):
@@ -187,6 +204,10 @@ def main1(stdscr, course_number):
                 # Open the python.org website
                 webbrowser.open('https://www.python.org')
 
+        # Detect if we're on Course 3, Page 2 and show the image
+        if course_number == 3 and current_page == 1:
+            a3.show()  # Open the image in a separate window
+
         stdscr.refresh()
         key = stdscr.getch()
 
@@ -199,7 +220,7 @@ def main1(stdscr, course_number):
 
 # Main application loop
 def main(stdscr):
-    #Main application loop to display TOC and allow navigation between courses.
+    # Main application loop to display TOC and allow navigation between courses.
     curses.curs_set(0)
     course_number = initial_course_number
 
@@ -211,5 +232,6 @@ def main(stdscr):
         else:
             course_number = main1(stdscr, course_number)
 
+# ----------------------------------------------------------------RUN THE CODE!!! YAY!!!!!---------------------------------------------------------------- #
 if __name__ == '__main__':
     curses.wrapper(main)
