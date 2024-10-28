@@ -15,7 +15,7 @@ def welcomeandselect():
     print(f"Hello {name}, welcome to the wonderful world of Python, but let's quickly check how much you know!")
     userKnowledge = input("Tell me, what do you know about machine language or binary?: ")
     while userKnowledge == "":
-        print("Please enter an input")
+        print("Please enter an input!")
         userKnowledge = input("Tell me, what do you know about machine language or binary")
 
         
