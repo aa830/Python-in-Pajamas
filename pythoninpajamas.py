@@ -17,7 +17,7 @@ def welcomeandselect():
    #what if the user cheats and doesnt input anything?? Just ask them to enter something!
     while userKnowledge == "":
         print("Please enter an input!")
-        userKnowledge = input("Tell me, what do you know about machine language or binary")
+        userKnowledge = input("Tell me, what do you know about machine language or binary?")
 
         
 
