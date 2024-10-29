@@ -75,21 +75,43 @@ def main1(stdscr, course_number):
     courses_content = {
         1: [
             (f"Page 1:\n\nHello {name}, welcome to your first lesson on Python in Pajamas!\n"
-             "..."),
-            ("Page 2:\n\nContinuing..."),
+             "In this course, you will learn the basics of Python programming.\n"
+             "You will be introduced to data types, control structures, and basic syntax.\n"
+             "Let's start by learning about variables and how to use them in your code.\n"
+             "\nVariables are used to store information to be referenced and manipulated in a program.\n"
+             "For example:\n\n"
+             "my_variable = 5\n\n"
+             "This line creates a variable called my_variable and assigns it the value 5.\n"),
+            ("Page 2:\n\nIn the next lesson, we will explore data types in Python.\n"
+             "There are several built-in data types in Python, including integers, floats, strings, and booleans.\n"
+             "You will learn how to define and use these data types in your programs.\n"
+             "Let's get started by looking at integers!\n"),
             ("Page 3:\n\nThis is the End of Course 1. Press 'q' to select the next course.")
         ],
         2: [
-            (f"Page 1:\n\nWelcome to Course 2, {name}!\n..."),
-            ("Page 2:\n\nContinuing with Course 2..."),
-            ("Page 3:\n\nBut what about math in Python?...")
+            (f"Page 1:\n\nWelcome to Course 2, {name}!\nIn this course, we will dive deeper into Python programming.\n"
+             "You will learn about functions, loops, and how to manage your code effectively.\n"
+             "By the end of this course, you will be able to write more complex programs and understand how to debug them.\n"
+             "Let's begin by discussing functions and how they can help you organize your code.\n"),
+            ("Page 2:\n\nA function is a block of code that only runs when it is called.\n"
+             "You can pass data, known as parameters, into a function.\n"
+             "Here is a simple example:\n\n"
+             "def my_function(parameter):\n"
+             "    print(parameter)\n\n"
+             "You can call this function with a specific value.\n"),
+            ("Page 3:\n\nBut what about math in Python? Python has built-in mathematical operations!\n"
+             "You can perform addition, subtraction, multiplication, and division.\n"
+             "Let's practice some calculations before moving on!\n")
         ],
         3: [
             (f"Page 1:\n\nWelcome to Course 3, {name}!\n\n"
              "First, we need to download Python. You can press 'o' to open the Python website in your browser.\n"
-             "..."),
+             "Once you have Python installed, we will begin exploring advanced concepts such as object-oriented programming.\n"
+             "This course will help you understand how to create your own classes and objects, making your code more organized.\n"),
             ("Page 2:\n\nIf you did all this correctly, you can officially enter the programming world! "
-             "Press the right arrow to see the image!\n\n"),
+             "Press the right arrow to see the image!\n\n"
+             "This is where you will see how to implement everything you learned in this course.\n"
+             "Let's get started by looking at a simple class in Python!\n"),
             ("Page 3:\n\nEnd of Course 3. Press 'q' to select the next course. Thank you for using my prototype!")
         ]
     }
