@@ -24,7 +24,7 @@ def show_toc(stdscr):
     toc_options = [
         "Introduction to Python in Pajamas",
         "Understanding Python Programming",
-        "Setting up Python"
+        "Binary and Memory Management"
     ]
     
     toc_text = f"Welcome, {name}!\n\nUse the arrow keys to select a course and press Enter:\n"
@@ -98,40 +98,38 @@ def main1(stdscr, course_number):
         ],
         2: [
             (
-                "Welcome to Course 2!\n\n"
-                "In this course, we'll dive into understanding Python programming.\n\n"
-                "Python is a popular programming language known for its readability and simplicity.\n"
-                "Let's explore some basic concepts, including variables, data types, and control flow."
+                f"Page 1:\n\nWelcome to Course 2, {name}!\nThis course will focus on understanding how the Python Programming Language works.\n"
+                "So, what is Python?\nRemember we talked about how binary has 0s and 1s? Imagine if everybody had to code in 0s and 1s, what a pain that would be!\n"
+                "That is why languages like Python exist. Think of it as a simplified version of the secret language: You can actually speak it!\n"
+                "There are other languages like Python, such as C, C++, C#, but those are a little too tricky for your little minds!\n"
+                "For now, let's stick to Python.\nWhere were we... ah! How does it work?\n"
+                "When you code in Python, it converts the binary form into something that coders like you can understand.\n"
+                "For example, rather than having to type a long line of 1s and 0s to print something (oh, what a headache!), in Python you can simply type:\n\n"
+                '    print("Python is easy!")\n'
             ),
             (
-                "Page 2:\n\nVariables in Python are used to store data.\n\n"
-                "You can think of a variable as a container for data. For example:\n\n"
-                "```python\n"
-                "x = 5\n"
-                "name = 'Alice'\n"
-                "```\n"
-                "Here, `x` is a variable that holds the integer value 5, and `name` holds a string value 'Alice'."
+                f"Page 2:\n\nContinuing with Course 2...\nPython is known as a ""high-level"" language because it allows you to write instructions using words that you can understand:.\n"
+                "You can think of high-level programming languages like a ladder: When you run a Python script, it goes down the 'ladder' to the CPU, which translates it into its own language.\n"
+                "After translating, the CPU sends out its order!\n\n"
+                "For the code above, the CPU will command the screen to print 'Python is easy!'\n"
+                "Machine language is a 'low-level' language because the CPU doesn't need to use that high of its power level to understand what the code wants to do!\n\n"
+                f"{a2}\n"
             ),
             (
-                "Page 3:\n\nThis is the End of Course 2. Press 'q' to select the next course."
+                "Page 3:\n\nEnd of Course 2, Chapter 1. Press ""q"" to select the next course."
             )
         ],
         3: [
             (
-                "Welcome to Course 3!\n\n"
-                "In this course, we will set up Python on your machine.\n\n"
-                "1. Download Python from the official website.\n"
-                "2. Follow the installation instructions based on your operating system."
+                f"Page 1:\n\nWelcome to Course 3, {name}!\nIn this lesson, we'll dive into how binary interacts with memory...\n"
+                "Every action you take on a computer involves storing and retrieving data from memory...\n"
             ),
             (
-                "Page 2:\n\nAfter installation, you can check if Python is installed by running:\n\n"
-                "```bash\n"
-                "python --version\n"
-                "```\n"
-                "This command should return the version of Python you installed."
+                "Page 2:\n\nCourse 3 continues with a deeper dive into memory management...\n"
+                "Understanding how data is stored in bits...\n"
             ),
             (
-                "Page 3:\n\nThis is the End of Course 3. Press 'q' to go back to the table of contents."
+                "Page 3:\n\nEnd of Course 3, Chapter 1. Press ""q"" to select the next course."
             )
         ]
     }
@@ -141,50 +139,30 @@ def main1(stdscr, course_number):
     key = 0
     max_y, max_x = stdscr.getmaxyx()
 
-    quit_pressed = False
-
     while True:
         stdscr.clear()
         text = pages_course[current_page]
         lines = wrap_text(text, max_x - 2)  # Wrap text to terminal width
 
-        # Calculate space for key instructions
-        instructions_space = 2
-        display_lines = max_y - instructions_space - 1  # Reserve space for instructions and border
-        
         for i, line in enumerate(lines):
-            if i < display_lines:
+            if i < max_y - 2:  # Leave space for the navigation instructions at the bottom
                 stdscr.addstr(i, 1, line)
 
         stdscr.box()
         
-        # Display the keybind instructions at the bottom
-        stdscr.addstr(max_y - instructions_space - 1, 1, "Use arrow keys (<-- or -->) or 'n'/'p' to navigate.")
-        stdscr.addstr(max_y - instructions_space, 1, "Press 'q' to go back.")
+        # Navigation instructions at the very bottom
+        stdscr.addstr(max_y - 1, 1, "Use arrow keys (<-- or -->) or 'n'/'p' to navigate, 'q' to go back.")
 
-        if course_number == 3 and current_page == 0:
-            stdscr.addstr(max_y - 2, 1, "Press 'o' to open python.org in your browser.")
-            key = stdscr.getch()
+        stdscr.refresh()
 
-            if key == ord('o'):
-                webbrowser.open('https://www.python.org')
-
-        elif course_number == 3 and current_page == 1:
-            a3.show()
-
-        else:
-            key = stdscr.getch()
+        key = stdscr.getch()
 
         if key == curses.KEY_RIGHT or key == ord('n'):
             current_page = (current_page + 1) % len(pages_course)
         elif key == curses.KEY_LEFT or key == ord('p'):
             current_page = (current_page - 1) % len(pages_course)
         elif key == ord('q'):
-            if quit_pressed:
-                return 'quit'
-            else:
-                quit_pressed = True
-                return 'toc'
+            return 'toc'
 
 # Run the application
 def main(stdscr):
