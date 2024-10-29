@@ -54,7 +54,7 @@ def show_toc(stdscr):
         # Navigate the menu
         if key == curses.KEY_UP and selected_option > 0:
             selected_option -= 1
-        elif key == curses.KEY_DOWN and selected_option < len(toc_options) - 1:
+        elif key == curses.KEY_DOWN and selected_option < toc_options.__len__() - 1:
             selected_option += 1
         elif key == ord('\n'):  # Enter key
             return selected_option + 1  # Return the selected course number (1-based index)
@@ -63,79 +63,6 @@ def show_toc(stdscr):
 
 # Main function to display course images
 def main1(stdscr, course_number):
-    stdscr.clear()
-    a1 = ascii_art1()
-    a2 = ascii_art2()
-    a3 = Image.open('Screenshot 2024-10-28 at 4.10.11 PM.png')
-
-    courses_content = {
-        1: [
-            (f"Page 1:\n\nHello {name}, welcome to your first lesson on Python in Pajamas!\n"
-             "..."),
-            ("Page 2:\n\nContinuing..."),
-            ("Page 3:\n\nThis is the End of Course 1. Press 'q' to select the next course.")
-        ],
-        2: [
-            (f"Page 1:\n\nWelcome to Course 2, {name}!\n..."),
-            ("Page 2:\n\nContinuing with Course 2..."),
-            ("Page 3:\n\nBut what about math in Python?...")
-        ],
-        3: [
-            (f"Page 1:\n\nWelcome to Course 3, {name}!\n\n"
-             "First, we need to download Python. You can press 'o' to open the Python website in your browser.\n"
-             "..."),
-            ("Page 2:\n\nIf you did all this correctly, you can officially enter the programming world! "
-             "Press the right arrow to see the image!\n\n"),
-            ("Page 3:\n\nEnd of Course 3. Press 'q' to select the next course. Thank you for using my prototype!")
-        ]
-    }
-
-    pages_course = courses_content.get(course_number, ["This course is not available."])
-
-    current_page = 0
-    key = 0
-
-    while key != ord('q'):
-        stdscr.clear()
-        max_y, max_x = stdscr.getmaxyx()
-        text = pages_course[current_page]
-        lines = text.splitlines() if isinstance(text, str) else text
-
-        for i, line in enumerate(lines):
-            if len(line) > max_x - 2:
-                line = line[:max_x - 2]
-            if i < max_y - 1:
-                stdscr.addstr(i, 1, line)
-
-        stdscr.box()
-        stdscr.addstr(max_y - 1, 1, "Use arrow keys (<-- or -->) or 'n'/'p' to navigate, 'q' to go back.")
-
-        # Only check for 'o' on Course 3, Page 1
-        if course_number == 3 and current_page == 0:
-            stdscr.addstr(max_y - 2, 1, "Press 'o' to open python.org in your browser.")
-            key = stdscr.getch()
-
-            if key == ord('o'):
-                webbrowser.open('https://www.python.org')
-
-        # Only display the image on Course 3, Page 2
-        elif course_number == 3 and current_page == 1:
-            stdscr.addstr(max_y - 2, 1, "Press the right arrow to see the image.")
-            key = stdscr.getch()
-
-            if key == curses.KEY_RIGHT or key == ord('n'):
-                a3.show()
-
-        stdscr.refresh()
-        key = stdscr.getch()
-
-        if key == curses.KEY_RIGHT or key == ord('n'):
-            current_page = (current_page + 1) % len(pages_course)
-        elif key == curses.KEY_LEFT or key == ord('p'):
-            current_page = (current_page - 1) % len(pages_course)
-        elif key == ord('q'):
-            return 'toc'
-
     # Main function to display course content.
     stdscr.clear()
     a1 = ascii_art1()
@@ -233,7 +160,7 @@ def main1(stdscr, course_number):
                 "Congrats!\n\n(P.S. your Thonny should look something like this). Press the right arrow to see the image!\n\n"
             ),
             (
-                "Page 3:\n\nEnd of Course 3. Press 'q' to select the next course. Thank you for using my protoype!"
+                "Page 3:\n\nEnd of Course 3. Press 'q' to select the next course. Thank you for using my prototype!"
             )
         ]
     }
@@ -278,33 +205,33 @@ def main1(stdscr, course_number):
                 webbrowser.open('https://www.python.org')
 
         # Detect if we're on Course 3, Page 2 and show the image
-        if course_number == 3 and current_page == 1:
-            a3.show()  # Open the image in a separate window
+        elif course_number == 3 and current_page == 1:
+            stdscr.addstr(max_y - 2, 1, "Press the right arrow to see the image.")
+            key = stdscr.getch()
 
-        stdscr.refresh()
-        key = stdscr.getch()
+            if key == curses.KEY_RIGHT or key == ord('n'):
+                a3.show()
 
-        if key == curses.KEY_RIGHT or key == ord('n'):
-            current_page = (current_page + 1) % len(pages_course)
-        elif key == curses.KEY_LEFT or key == ord('p'):
-            current_page = (current_page - 1) % len(pages_course)
-        elif key == ord('q'):
-            return 'toc'
-
-# Main application loop
-def main(stdscr):
-    # Main application loop to display TOC and allow navigation between courses.
-    curses.curs_set(0)
-    course_number = initial_course_number
-
-    while True:
-        if course_number == 'quit':
-            break
-        elif course_number == 'toc':
-            course_number = show_toc(stdscr)
         else:
-            course_number = main1(stdscr, course_number)
+            key = stdscr.getch()
 
-# ----------------------------------------------------------------RUN THE CODE!!! YAY!!!!!---------------------------------------------------------------- #
-if __name__ == '__main__':
+        # Navigate pages with left/right arrows
+        if key == curses.KEY_RIGHT or key == ord('n'):
+            if current_page < len(pages_course) - 1:
+                current_page += 1
+        elif key == curses.KEY_LEFT or key == ord('p'):
+            if current_page > 0:
+                current_page -= 1
+
+# Run the application
+def main(stdscr):
+    curses.curs_set(0)
+    selected_course = show_toc(stdscr)
+
+    if selected_course == 'quit':
+        return
+
+    main1(stdscr, selected_course)
+
+if __name__ == "__main__":
     curses.wrapper(main)
