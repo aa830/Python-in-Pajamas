@@ -136,7 +136,7 @@ def main1(stdscr, course_number):
                 '    number = input("Enter a number: ")\n'
                 '    new_number = 1 + int(number)\n'
                 '    print(f"Your new number is: {new_number}")\n\n'
-                "Notice how we use 'input()' to get user input and 'int()' to make sure it's treated as a number."
+                "Notice how we use 'input()' to get user input and 'int()' to make sure it's treated as a number.\n\nSo now you know the basics of how python works!"
             )
         ],
         3: [
