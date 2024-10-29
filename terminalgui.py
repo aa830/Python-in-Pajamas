@@ -2,7 +2,7 @@ import curses
 import sys
 import webbrowser
 from PIL import Image
-from asciirenderer import ascii_art1, ascii_art2
+from asciirenderer import ascii_art1, ascii_art2, ascii_art3
 
 
 # ----------------------------------------------------------------DEFINING VARIABLES---------------------------------------------------------------- #
@@ -70,6 +70,7 @@ def main1(stdscr, course_number):
     a1 = ascii_art1()
     a2 = ascii_art2()
     a3 = Image.open('Screenshot 2024-10-28 at 4.10.11 PM.png')  # Make sure this file exists
+    a4 = ascii_art3()
 
     courses_content = {
         1: [
@@ -143,7 +144,7 @@ def main1(stdscr, course_number):
             (
                 f"Page 1:\n\nWelcome to Course 3, {name}!\n"
                 "In this course, we'll explore how you can start programming!\n\n"
-                "First, we need to download Python. You can press 'o' to open the Python website in your browser.\n\n"
+                f"First, we need to download Python. You can press 'o' to open the Python website in your browser.\n\n{a3}"
                 "After downloading, just double-click the file!\n\n"
                 "If there is an option called 'add to PATH', make sure to select it. "
                 "Then all you need to do is click install, and voila! You have Python!\n\n"
