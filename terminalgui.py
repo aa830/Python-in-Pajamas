@@ -65,7 +65,7 @@ def main1(stdscr, course_number):
     stdscr.clear()
     a1 = ascii_art1()
     a2 = ascii_art2()
-    a3 = Image.open('/Users/aaravdarbari/Documents/Screenshot 2024-10-29 at 2.48.47 PM.png')
+    a3 = Image.open('Screenshot 2024-10-28 at 4.10.11 PM.png')
 
     courses_content = {
         1: [
