@@ -95,6 +95,44 @@ def main1(stdscr, course_number):
             (
                 "Page 3:\n\nThis is the End of Course 1. Press 'q' to select the next course."
             )
+        ],
+        2: [
+            (
+                "Welcome to Course 2!\n\n"
+                "In this course, we'll dive into understanding Python programming.\n\n"
+                "Python is a popular programming language known for its readability and simplicity.\n"
+                "Let's explore some basic concepts, including variables, data types, and control flow."
+            ),
+            (
+                "Page 2:\n\nVariables in Python are used to store data.\n\n"
+                "You can think of a variable as a container for data. For example:\n\n"
+                "```python\n"
+                "x = 5\n"
+                "name = 'Alice'\n"
+                "```\n"
+                "Here, `x` is a variable that holds the integer value 5, and `name` holds a string value 'Alice'."
+            ),
+            (
+                "Page 3:\n\nThis is the End of Course 2. Press 'q' to select the next course."
+            )
+        ],
+        3: [
+            (
+                "Welcome to Course 3!\n\n"
+                "In this course, we will set up Python on your machine.\n\n"
+                "1. Download Python from the official website.\n"
+                "2. Follow the installation instructions based on your operating system."
+            ),
+            (
+                "Page 2:\n\nAfter installation, you can check if Python is installed by running:\n\n"
+                "```bash\n"
+                "python --version\n"
+                "```\n"
+                "This command should return the version of Python you installed."
+            ),
+            (
+                "Page 3:\n\nThis is the End of Course 3. Press 'q' to go back to the table of contents."
+            )
         ]
     }
 
@@ -110,12 +148,19 @@ def main1(stdscr, course_number):
         text = pages_course[current_page]
         lines = wrap_text(text, max_x - 2)  # Wrap text to terminal width
 
+        # Calculate space for key instructions
+        instructions_space = 2
+        display_lines = max_y - instructions_space - 1  # Reserve space for instructions and border
+        
         for i, line in enumerate(lines):
-            if i < max_y - 1:
+            if i < display_lines:
                 stdscr.addstr(i, 1, line)
 
         stdscr.box()
-        stdscr.addstr(max_y - 1, 1, "Use arrow keys (<-- or -->) or 'n'/'p' to navigate, 'q' to go back.")
+        
+        # Display the keybind instructions at the bottom
+        stdscr.addstr(max_y - instructions_space - 1, 1, "Use arrow keys (<-- or -->) or 'n'/'p' to navigate.")
+        stdscr.addstr(max_y - instructions_space, 1, "Press 'q' to go back.")
 
         if course_number == 3 and current_page == 0:
             stdscr.addstr(max_y - 2, 1, "Press 'o' to open python.org in your browser.")
