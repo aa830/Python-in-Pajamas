@@ -63,6 +63,79 @@ def show_toc(stdscr):
 
 # Main function to display course images
 def main1(stdscr, course_number):
+    stdscr.clear()
+    a1 = ascii_art1()
+    a2 = ascii_art2()
+    a3 = Image.open('Screenshot 2024-10-28 at 4.10.11 PM.png')
+
+    courses_content = {
+        1: [
+            (f"Page 1:\n\nHello {name}, welcome to your first lesson on Python in Pajamas!\n"
+             "..."),
+            ("Page 2:\n\nContinuing..."),
+            ("Page 3:\n\nThis is the End of Course 1. Press 'q' to select the next course.")
+        ],
+        2: [
+            (f"Page 1:\n\nWelcome to Course 2, {name}!\n..."),
+            ("Page 2:\n\nContinuing with Course 2..."),
+            ("Page 3:\n\nBut what about math in Python?...")
+        ],
+        3: [
+            (f"Page 1:\n\nWelcome to Course 3, {name}!\n\n"
+             "First, we need to download Python. You can press 'o' to open the Python website in your browser.\n"
+             "..."),
+            ("Page 2:\n\nIf you did all this correctly, you can officially enter the programming world! "
+             "Press the right arrow to see the image!\n\n"),
+            ("Page 3:\n\nEnd of Course 3. Press 'q' to select the next course. Thank you for using my prototype!")
+        ]
+    }
+
+    pages_course = courses_content.get(course_number, ["This course is not available."])
+
+    current_page = 0
+    key = 0
+
+    while key != ord('q'):
+        stdscr.clear()
+        max_y, max_x = stdscr.getmaxyx()
+        text = pages_course[current_page]
+        lines = text.splitlines() if isinstance(text, str) else text
+
+        for i, line in enumerate(lines):
+            if len(line) > max_x - 2:
+                line = line[:max_x - 2]
+            if i < max_y - 1:
+                stdscr.addstr(i, 1, line)
+
+        stdscr.box()
+        stdscr.addstr(max_y - 1, 1, "Use arrow keys (<-- or -->) or 'n'/'p' to navigate, 'q' to go back.")
+
+        # Only check for 'o' on Course 3, Page 1
+        if course_number == 3 and current_page == 0:
+            stdscr.addstr(max_y - 2, 1, "Press 'o' to open python.org in your browser.")
+            key = stdscr.getch()
+
+            if key == ord('o'):
+                webbrowser.open('https://www.python.org')
+
+        # Only display the image on Course 3, Page 2
+        elif course_number == 3 and current_page == 1:
+            stdscr.addstr(max_y - 2, 1, "Press the right arrow to see the image.")
+            key = stdscr.getch()
+
+            if key == curses.KEY_RIGHT or key == ord('n'):
+                a3.show()
+
+        stdscr.refresh()
+        key = stdscr.getch()
+
+        if key == curses.KEY_RIGHT or key == ord('n'):
+            current_page = (current_page + 1) % len(pages_course)
+        elif key == curses.KEY_LEFT or key == ord('p'):
+            current_page = (current_page - 1) % len(pages_course)
+        elif key == ord('q'):
+            return 'toc'
+
     # Main function to display course content.
     stdscr.clear()
     a1 = ascii_art1()
