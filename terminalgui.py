@@ -10,7 +10,7 @@ from PIL import Image
 name = sys.argv[1] if len(sys.argv) > 1 else "User"
 initial_course_number = int(sys.argv[2]) if len(sys.argv) > 2 else 1
 
-# Table of contents menu for user to choose next course
+# Table of contents menu for user to choose the next course
 def show_toc(stdscr):
     # Display the Table of Contents and allow the user to choose a course using arrow keys.
     stdscr.clear()
@@ -45,7 +45,7 @@ def show_toc(stdscr):
                 stdscr.addstr(len(lines) + 2 + idx, 2, f"  {option}")
 
         # Instruction for quitting
-        stdscr.addstr(max_y - 1, 1, "Press 'q' to quit.")
+        stdscr.addstr(max_y - 1, 1, "Press 'q' twice to quit.")
         stdscr.refresh()
 
         # Get user input
@@ -98,7 +98,7 @@ def main1(stdscr, course_number):
                 "Everything we've described so far is called 'machine language'—now you know!"
             ),
             (
-                "Page 3:\n\nThis is the End of Course 1. Press 'q' to select the next course."
+                "Page 3:\n\nThis is the End of Course 1. Press 'q' to return to the TOC."
             )
         ],
         2: [
@@ -157,31 +157,22 @@ def main1(stdscr, course_number):
             ),
             (
                 "Page 2:\n\nIf you did all this correctly, you can officially enter the programming world! "
-                "Congrats!\n\n(P.S. your Thonny should look something like this). Press the right arrow to see the image!\n\n"
+                "Congrats!\n\n(P.S. your Thonny window should look something like this):\n\n"
+                "Press the right arrow to see an image!"
             ),
             (
-                "Page 3:\n\nEnd of Course 3. Press 'q' to select the next course. Thank you for using my prototype!"
+                "Page 3:\n\nEnd of Course 3! Press 'q' to return to the TOC."
             )
         ]
     }
 
-    # Get the content for the selected course
-    pages_course = courses_content.get(course_number, ["This course is not available."])
-
-    # Initialize variables
+    pages_course = courses_content[course_number]
     current_page = 0
-    key = 0
+    max_y, max_x = stdscr.getmaxyx()
+    quit_pressed = False  # Track if 'q' has been pressed once
 
-    # ----------------------------------------------------------------DEFINING KEYBINDS---------------------------------------------------------------- #
-
-    # Main loop
-    while key != ord('q'):
+    while True:
         stdscr.clear()
-
-        # Get screen dimensions
-        max_y, max_x = stdscr.getmaxyx()
-
-        # Display the current page text
         text = pages_course[current_page]
         lines = text.splitlines() if isinstance(text, str) else text
 
@@ -222,11 +213,18 @@ def main1(stdscr, course_number):
         elif key == curses.KEY_LEFT or key == ord('p'):
             if current_page > 0:
                 current_page -= 1
+        elif key == ord('q'):
+            if quit_pressed:
+                return 'quit'
+            else:
+                return 'toc'
+        else:
+            quit_pressed = False
 
 # Run the application
 def main(stdscr):
     curses.curs_set(0)
-    selected_course = show_toc(stdscr)
+    selected_course = initial_course_number
 
     if selected_course == 'quit':
         return
