@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "python-in-pajamas"
+version = "0.1.0"
+license = "GPL-3.0"
+description = "A freeware, open-source program that teaches students the basics of binary, machine language and programming in Python"
+authors = ["ezntek <eason@ezntek.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pillow = "^11.0.0"
+pyfiglet = "^1.0.2"
+python-Levenshtein = "^0.26.1"
+rich = "^13.9.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

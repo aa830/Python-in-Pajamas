@@ -1,32 +1,32 @@
 # Python-in-Pajamas (WIP)
+
 A freeware, open-source program that teaches children the basics of binary, machine language and programming in python; for my High School Computer Science Project
 
+`Copyright (c) Aarav Darbari <aarv2030@gmail.com> and Eason Qin <eason@ezntek.com>, 2024`
 
 # Dependencies
 
-1. Python3
-2. Python libraries (in requirements.txt)
-3. Some kind of terminal, command prompt or terminal emulator.
-
-
-# How does it work?
-
-It uses a minimal amount of 3rd party libraries (hence the requirements.txt) and mostly in-built python libraries to display images and text in a terminal-based GUI.
-
+1. `poetry`
+2. Some kind of terminal, command prompt or terminal emulator.
 
 # Usage
 
-Clone this repository by either clicking the latest published package, or cloning from command line using git.
-`git clone https://github.com/aa830/Python-in-Pajamas.git`
+## Initial Setup
 
+1. Clone this repository by either clicking the latest published package, or cloning from command line using git.
+   
+   `git clone https://github.com/aa830/Python-in-Pajamas.git && cd Python-in-Pajamas`
+2. create a new virtual environment:
+   
+   `poetry env use python3`
+3. Run a shell in the virtual environment
+   
+   `poetry run zsh`
+4. Run the package
 
-You should have an extracted folder called Python-in-Pajamas, inside there is a run.sh or a run.bat script. You may use this to launch the program based on your operating system.
+   `python -m pythoninpajamas`
 
-# Installing required libraries
+## Typical Usage
 
-Simply cd into the directory and run `pip3 install -r requirements.txt`
-This will install the currently required libraries (pyfiglet, rich, Levenshtein and pillow)
-
-# Note for MacOS users
-
-Please run the following command to make the shell script executable `chmod +x run.sh` (assuming you are already inside the folder)
+1. chdir into the directory, whereever you have stored it
+2. `poetry run /path/to/python3 -m pythoninpajamas`

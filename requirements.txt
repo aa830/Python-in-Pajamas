@@ -1,5 +1,0 @@
-Pillow==11.0.0
-pyfiglet==1.0.2
-python_Levenshtein==0.26.0
-python_Levenshtein==0.26.1
-rich==13.9.3
