@@ -1,8 +1,9 @@
 from rich.console import Console
 
+
 def display_ascii_art():
     console = Console()
-    
+
     # The full ASCII art illustration
     art = r"""
          Display Monitor                            CPU
@@ -40,12 +41,13 @@ def display_ascii_art():
    CPU: "Hello! You seem bright today!"
    Display: "Thanks!"
     """
-    
+
     # Print the ASCII art
     console.print(art)
 
+
 def ascii_art1():
-    #Return the ASCII art as a string.
+    # Return the ASCII art as a string.
     return r"""
          Display Monitor                            CPU
          ____________________                     ____
@@ -82,10 +84,13 @@ def ascii_art1():
    CPU: "Hello! You seem bright today!"
    Display: "Thanks!"
     """
-#second ascii
+
+
+# second ascii
+
 
 def ascii_art2():
-    #Return the ASCII art as a string
+    # Return the ASCII art as a string
     return r"""
 
             :BPPP77Y:      JYYG&BBP!7GYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
@@ -163,7 +168,7 @@ def ascii_art2():
 
 
 def ascii_art3():
-    #Return the ascii art as a string
+    # Return the ascii art as a string
     return r"""
                                                                                                                                                                  
                                                                                                                                                                  

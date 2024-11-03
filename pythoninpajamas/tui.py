@@ -1,16 +1,14 @@
 import curses
-import sys
+import os
 import webbrowser
 from PIL import Image
-from asciirenderer import ascii_art1, ascii_art2, ascii_art3
+from .asciiart import ascii_art1, ascii_art2, ascii_art3
 
 
 # ----------------------------------------------------------------DEFINING VARIABLES---------------------------------------------------------------- #
 
-
-# Get the name and course number passed as command-line arguments
-name = sys.argv[1] if len(sys.argv) > 1 else "User"
-initial_course_number = int(sys.argv[2]) if len(sys.argv) > 2 else 1
+name: str
+initial_course_number: int
 
 
 # Table of contents menu for user to choose next course
@@ -19,10 +17,12 @@ def show_toc(stdscr):
     toc_options = [
         "Introduction to Python in Pajamas",
         "Understanding Python Programming",
-        "Setting up Python"
+        "Setting up Python",
     ]
-  
-    toc_text = f"Welcome, {name}!\n\nUse the arrow keys to select a course and press Enter:\n"
+
+    toc_text = (
+        f"Welcome, {name}!\n\nUse the arrow keys to select a course and press Enter:\n"
+    )
     lines = toc_text.splitlines()
     max_y, max_x = stdscr.getmaxyx()
 
@@ -35,7 +35,7 @@ def show_toc(stdscr):
         # Display the welcome message and TOC options
         for i, line in enumerate(lines):
             if len(line) > max_x - 2:
-                line = line[:max_x - 2]
+                line = line[: max_x - 2]
             if i < max_y - 1:
                 stdscr.addstr(i + 1, 1, line)
 
@@ -58,18 +58,28 @@ def show_toc(stdscr):
             selected_option -= 1
         elif key == curses.KEY_DOWN and selected_option < len(toc_options) - 1:
             selected_option += 1
-        elif key == ord('\n'):  # Enter key
-            return selected_option + 1  # Return the selected course number (1-based index)
-        elif key == ord('q'):
-            return 'quit'
+        elif key == ord("\n"):  # Enter key
+            return (
+                selected_option + 1
+            )  # Return the selected course number (1-based index)
+        elif key == ord("q"):
+            return "quit"
 
 
 # Main function to display course content
 def main1(stdscr, course_number):
     stdscr.clear()
+    
+    # find image path
+    script_path = os.path.realpath(__file__)
+    script_parent_dir = os.path.dirname(script_path)
+    img_path = os.path.join(script_parent_dir, "assets", "thonny.png")
+
     a1 = ascii_art1()
     a2 = ascii_art2()
-    a3 = Image.open('Screenshot 2024-10-28 at 4.10.11 PM.png')  # Make sure this file exists
+    a3 = Image.open(
+        img_path 
+    )  # Make sure this file exists
     a4 = ascii_art3()
 
     courses_content = {
@@ -99,7 +109,7 @@ def main1(stdscr, course_number):
             ),
             (
                 "Page 3:\n\nThis is the End of Course 1. Press 'q' to select the next course."
-            )
+            ),
         ],
         2: [
             (
@@ -135,10 +145,10 @@ def main1(stdscr, course_number):
                 "Plus and minus work just like you'd expect!\n\n"
                 "Let's write a simple Python program that adds two numbers:\n\n"
                 '    number = input("Enter a number: ")\n'
-                '    new_number = 1 + int(number)\n'
+                "    new_number = 1 + int(number)\n"
                 '    print(f"Your new number is: {new_number}")\n\n'
                 "Notice how we use 'input()' to get user input and 'int()' to make sure it's treated as a number.\n\nSo now you know the basics of how python works!"
-            )
+            ),
         ],
         3: [
             (
@@ -161,8 +171,8 @@ def main1(stdscr, course_number):
             ),
             (
                 "Page 3:\n\nEnd of Course 3. Press 'q' to select the next course. Thank you for using my prototype!"
-            )
-        ]
+            ),
+        ],
     }
 
     pages_course = courses_content.get(course_number, ["This course is not available."])
@@ -170,7 +180,7 @@ def main1(stdscr, course_number):
     current_page = 0
     key = 0
 
-    while key != ord('q'):
+    while key != ord("q"):
         stdscr.clear()
         max_y, max_x = stdscr.getmaxyx()
         text = pages_course[current_page]
@@ -178,38 +188,42 @@ def main1(stdscr, course_number):
 
         for i, line in enumerate(lines):
             if len(line) > max_x - 2:
-                line = line[:max_x - 2]
+                line = line[: max_x - 2]
             if i < max_y - 1:
                 stdscr.addstr(i, 1, line)
 
         stdscr.box()
-        stdscr.addstr(max_y - 1, 1, "Use arrow keys (<-- or -->) or 'n'/'p' to navigate, 'q' to go back.")
+        stdscr.addstr(
+            max_y - 1,
+            1,
+            "Use arrow keys (<-- or -->) or 'n'/'p' to navigate, 'q' to go back.",
+        )
 
         # Only check for 'o' on Course 3, Page 1
         if course_number == 3 and current_page == 0:
             stdscr.addstr(max_y - 2, 1, "Press 'o' to open python.org in your browser.")
             key = stdscr.getch()
 
-            if key == ord('o'):
-                webbrowser.open('https://www.python.org')
+            if key == ord("o"):
+                webbrowser.open("https://www.python.org")
 
         # Only display the image on Course 3, Page 2
         elif course_number == 3 and current_page == 1:
             stdscr.addstr(max_y - 2, 1, "Press the right arrow to see the image.")
             key = stdscr.getch()
 
-            if key == curses.KEY_RIGHT or key == ord('n'):
+            if key == curses.KEY_RIGHT or key == ord("n"):
                 a3.show()
 
         stdscr.refresh()
         key = stdscr.getch()
 
-        if key == curses.KEY_RIGHT or key == ord('n'):
+        if key == curses.KEY_RIGHT or key == ord("n"):
             current_page = (current_page + 1) % len(pages_course)
-        elif key == curses.KEY_LEFT or key == ord('p'):
+        elif key == curses.KEY_LEFT or key == ord("p"):
             current_page = (current_page - 1) % len(pages_course)
-        elif key == ord('q'):
-            return 'toc'
+        elif key == ord("q"):
+            return "toc"
 
 
 # Main function to display course content.
@@ -219,14 +233,17 @@ def main(stdscr):
     course_number = initial_course_number
 
     while True:
-        if course_number == 'quit':
+        if course_number == "quit":
             break
-        elif course_number == 'toc':
+        elif course_number == "toc":
             course_number = show_toc(stdscr)
         else:
             course_number = main1(stdscr, course_number)
 
 
-# ----------------------------------------------------------------RUN THE CODE!!! YAY!!!!!---------------------------------------------------------------- #
-if __name__ == '__main__':
+def launch(name_a, initial_course_number_a):
+    # _a prefix to avoid global variable clash
+    global name, initial_course_number
+    name = name_a
+    initial_course_number = initial_course_number_a
     curses.wrapper(main)
