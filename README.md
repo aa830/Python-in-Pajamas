@@ -2,7 +2,7 @@
 
 A freeware, open-source program that teaches children the basics of binary, machine language and programming in python; for my High School Computer Science Project
 
-`Copyright (c) Aarav Darbari <aarv2030@gmail.com> and Eason Qin <eason@ezntek.com>, 2024`
+`Copyright (c) Aarav Darbari <aarvd2030@gmail.com> and Eason Qin <eason@ezntek.com>, 2024`
 
 # Dependencies
 
